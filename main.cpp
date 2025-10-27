@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include <list>
+#include <set>
 #include "Goat.h"
 #include <string>
 #include <cstdlib>
@@ -9,10 +9,10 @@ using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25, MAX_AGE = 20;
 
-int select_goat(list<Goat> trip);
-void delete_goat(list<Goat> &trip);
-void add_goat(list<Goat> &trip, string [], string []);
-void display_trip(list<Goat> trip);
+int select_goat(set<Goat> trip);
+void delete_goat(set<Goat> &trip);
+void add_goat(set<Goat> &trip, string [], string []);
+void display_trip(set<Goat> trip);
 int main_menu();
 
 int main() {
@@ -31,7 +31,7 @@ int main() {
     while (fin1 >> colors[i++]);
     fin1.close();
 
-    list<Goat> goat_trip;
+    set<Goat> goat_trip;
     int menu_choice = 0;
 
     //main application loop
@@ -85,7 +85,7 @@ int main_menu() {
 }
 
 
-void add_goat(list<Goat> &trip, string names[], string colors[]){
+void add_goat(set<Goat> &trip, string names[], string colors[]){
     string name = names[rand() % SZ_NAMES];
     string color = colors[rand() % SZ_COLORS];
     int age = rand() % MAX_AGE; // random age from 0 to 19
@@ -100,7 +100,7 @@ void add_goat(list<Goat> &trip, string names[], string colors[]){
     cout << "\n" << name << " the " << color << " goat (age " << age << ") has joined the trip!" << endl;
 }
 
-void display_trip(list<Goat> trip) {
+void display_trip(set<Goat> trip) {
     if (trip.empty()) {
         cout << "The trip is empty. No goats yet!" << endl;
         return;
@@ -117,7 +117,7 @@ void display_trip(list<Goat> trip) {
     cout << "-------------------------" << endl;
 }
 
-int select_goat(list<Goat> trip) {
+int select_goat(set<Goat> trip) {
     int i = 1; // start at 1 for the menu
     cout << "Select a goat" << endl;
     
@@ -143,7 +143,7 @@ int select_goat(list<Goat> trip) {
     return choice;
 }
 
-void delete_goat(list<Goat> &trip) {
+void delete_goat(set<Goat> &trip) {
     if (trip.empty()) {
         cout << "There are no goats to delete. " << endl;
         return;
