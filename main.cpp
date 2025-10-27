@@ -92,10 +92,8 @@ void add_goat(set<Goat> &trip, string names[], string colors[]){
 
     // create and add the goat
     Goat newGoat(name, age, color);
-    trip.push_back(newGoat);
+    trip.insert(newGoat);
     
-    // sort the list by name
-    trip.sort();
     
     cout << "\n" << name << " the " << color << " goat (age " << age << ") has joined the trip!" << endl;
 }
@@ -155,7 +153,9 @@ void delete_goat(set<Goat> &trip) {
     // Get an iterator to the start
     auto it = trip.begin();
     
-    std::advance(it, choice-1);
+    for (int i  = 1; i<choice; i++){
+        ++it;
+    }
     
     cout << "\n" << it->get_name() << " has been removed from the trip." << endl;
     
